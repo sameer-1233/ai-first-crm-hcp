@@ -1,16 +1,76 @@
-# React + Vite
+# AI-First CRM – HCP Interaction Module (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Overview
 
-Currently, two official plugins are available:
+This repository contains the **frontend application** for an **AI-First CRM system** designed to log, manage, and analyze Healthcare Professional (HCP) interactions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The frontend provides:
+- A structured interaction logging form
+- An AI-powered assistant for natural language input
+- Automatic form population using AI
+- A clean, professional dashboard UI
 
-## React Compiler
+It is built with **React + Vite** and communicates with the backend via standard REST APIs.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🎯 Objectives (Task 1 Alignment)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The frontend demonstrates:
+- Human-friendly interaction logging
+- AI-assisted workflows
+- Clear separation of UI, logic, and API layers
+- Seamless integration with an AI-powered backend (LangGraph + FastAPI)
+
+This satisfies **Task 1 frontend requirements** of the assignment.
+
+---
+
+## ✨ Key Features
+
+### 1️⃣ HCP Interaction Form
+Users can log the following details:
+- HCP Name  
+- Interaction Type (Meeting, Call, etc.)
+- Date & Time  
+- Attendees  
+- Topics Discussed  
+- Product / Material Shared  
+- Summary / Notes  
+
+### 2️⃣ AI Assistant Panel
+- Users describe interactions in natural language
+- AI parses the description
+- Relevant fields are auto-filled in the form
+- Reduces manual data entry
+
+### 3️⃣ Dual Input Modes
+- **Form Mode** – Manual structured input
+- **AI Mode** – Conversational AI-assisted input
+
+### 4️⃣ Clean Dashboard UI
+- Card-based layout
+- Proper spacing & hierarchy
+- Responsive design
+- Submission-ready professional look
+
+---
+
+## 🧠 AI Auto-Fill Mechanism
+
+The AI assistant emits structured data using a browser event:
+
+```js
+window.dispatchEvent(
+  new CustomEvent("ai-fill-form", {
+    detail: {
+      hcpName,
+      interactionType,
+      summary,
+      attendees,
+      productsShared
+    }
+  })
+);
+
+
